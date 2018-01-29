@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Minesweeper</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/minesweeper.js"></script>
+	</head>
+
+
+	<body>
+
+
+
+		<!-- Page Header -->
+		<header class="noselect">
+			<div class="header-title">MINESWEEPER</div>
+			<div id="id-header-subtitle" class="header-subtitle">
+				Save/Load your progress by using <div class="header-subtitle-isauthorized-false" onclick = "openAuthorizationModal()">username</div>
+			</div>
+		</header>
+
+
+
+		<!-- Navigation Bars -->
+
+			<!-- GameOption Bar -->
+		<nav id="id-nav-menubar">
+			<table>
+				<tr>
+					<th>
+						<!-- Menu Button -->
+						<table class="nav-button-custom noselect tooltip"><tr><th>
+							<span class="tooltiptext">Menu</span>
+							<div class="nav-button-custom-image" style="background-image: url('res/img/menu(bright).png');"></div>
+						</th></tr></table>
+					</th>
+
+					<th>
+						<!-- Mines Option Button -->
+						<table class="nav-button-custom noselect tooltip" onclick="openMinesModal()"><tr>
+							<th>
+								<span class="tooltiptext">Mines Amount</span>
+								<div class="nav-button-custom-image" style="background-image: url('res/img/lock(bright).png');"></div>
+							</th>
+							<th>
+								<div class="nav-button-custom-wrapperarea"><div id="id-field-mines" class="nav-button-custom-text">20%</div></div>
+							</th>
+						</tr></table>
+					</th>
+		
+					<th>
+						<!-- Board Option Button -->
+						<table class="nav-button-custom noselect tooltip" onclick="openBoardModal()"><tr>
+							<th>
+								<span class="tooltiptext">Board Size</span>
+								<div class="nav-button-custom-image" style="background-image: url('res/img/board3(bright).png');"></div>
+							</th>
+							<th>
+								<div class="nav-button-custom-wrapperarea"><div id="id-field-board" class="nav-button-custom-text">6x6</div></div>
+							</th>
+						</tr></table>
+    				</th>
+
+    					<!-- Begin Button -->
+					<th><button class="button-green" onclick="start()">START</button></th>
+				</tr>
+			</table>
+		</nav>
+
+			<!-- GameInfo Bar -->
+		<nav id="id-nav-infobar" style="display: none">
+			<table>
+				<tr>
+					<th>
+						<!-- Time -->
+						<table class="nav-button-custom-dummy noselect tooltip"><tr>
+							<th>
+								<span class="tooltiptext">Time Passed</span>
+								<div class="nav-button-custom-image" style="background-image: url('res/img/time(bright).png');"></div>
+							</th>
+							<th>
+								<div class="nav-button-custom-wrapperarea"><div id="id-nav-infobar-timefield" class="nav-button-custom-text">0:00</div></div>
+							</th>
+						</tr></table>
+    				</th>
+
+					<th>
+						<!-- Mines Left -->
+						<table class="nav-button-custom-dummy noselect tooltip"><tr>
+							<th>
+								<span class="tooltiptext">Mines Left</span>
+								<div class="nav-button-custom-image" style="background-image: url('res/img/lock(bright).png');"></div>
+							</th>
+							<th>
+								<div class="nav-button-custom-wrapperarea"><div id="id-nav-infobar-minesfield" class="nav-button-custom-text">o</div></div>
+							</th>
+						</tr></table>
+					</th>
+
+						<!-- Stop Button -->
+					<th><button class="button-red" onclick="stop()">STOP</button></th>
+				</tr>
+			</table>
+		</nav>
+
+
+
+		<!-- Game Board -->
+		<main>
+			<table id="id-gametable" class="gametable noselect">
+				<tr>
+					<th class="gametable-lockscreen"><div class="gametable-text-red">Choose your Board</div></th>
+				</tr>
+			</table>
+		</main>
+
+
+
+		<!-- Recent Games -->
+		<footer>
+			<div class="footer-title noselect">Recent Games</div>
+
+
+			<table id="id-footer-scoreboard">
+				<tr class="footer-scoreboard-titles">
+					<th>Name</th><th>Mines</th><th>Size</th><th>Turns</th><th>Result</th>
+				</tr>
+			</table> 
+
+			<table class="footer-search">
+				<tr>
+					<th class="noselect">Search:</th>
+					<th><input type="text" placeholder="Player Username..." id="id-footer-search-input" autoComplete="off"></th>
+				</tr>
+			</table>
+
+			<table>
+				<tr>
+					<th><button class="button-green" onclick="loadHighScores()">REFRESH HIGHSCORES</button></th>
+					<th><button class="button-red" onclick="resetData()">RESET</button></th>
+				</tr>
+			</table>
+		</footer>
+
+
+
+		<!-- Modals / Popup Windows -->
+
+			<!-- Authorization Modal -->
+		<div id="id-modal-authorization" class="modal">
+			<div class="modal-content">
+			    <div class="modal-header">AUTHORIZATION</div>
+
+			    <div class="modal-body">
+			    	<div class="modal-text noselect">Enter your Username:</div>
+			    	<div class="modal-marginarea">
+						<input type="text" id="id-modal-authorization-usernamefield" placeholder="Your Username..." autoComplete="off">
+					</div>
+					<table>
+					    <tr>
+					      	<th><button class="button-green" onclick="enterName()">LET'S GO!</button></th>
+					      	<th><button class="button-red" onclick="closeModals()">NO!</button></th>
+					    </tr>
+				    </table>
+			    </div>
+			</div>
+		</div>
+
+			<!-- Mines Modal -->
+		<div id="id-modal-mines" class="modal">
+			<div class="modal-content">
+
+			    <div class="modal-header">AMOUNT OF MINES</div>
+
+			    <div class="modal-body">
+
+			    	<div class="modal-text noselect">Choose your option:</div>
+			    	
+			    	<table class="modal-marginarea noselect">
+			    		<tr>
+			    			<th>
+			    				<table class="modal-button-custom noselect" onclick="setMinesFieldValue('20')" id="id-modal-mines-button-20">
+			    					<tr><th><div class="modal-button-custom-text-small">NORMAL</div></th></tr>
+			    					<tr><th><div class="modal-button-custom-image" style="background-image: url('res/img/lock(bright).png');"></div></th></tr>
+			    					<tr><th><div class="modal-button-custom-text">20%</div></th></tr>
+			    				</table>
+			    			</th>
+
+			    			<th>
+			    				<table class="modal-button-custom noselect" onclick="setMinesFieldValue('30')" id="id-modal-mines-button-30">
+			    					<tr><th><div class="modal-button-custom-text-small">MODERATE</div></th></tr>
+			    					<tr><th><div class="modal-button-custom-image" style="background-image: url('res/img/lock(bright).png');"></div></th></tr>
+			    					<tr><th><div class="modal-button-custom-text">30%</div></th></tr>
+			    				</table>
+			    			</th>
+
+			    			<th>
+			    				<table class="modal-button-custom noselect" onclick="setMinesFieldValue('40')" id="id-modal-mines-button-40">
+			    					<tr><th><div class="modal-button-custom-text-small">HARD</div></th></tr>
+			    					<tr><th><div class="modal-button-custom-image" style="background-image: url('res/img/lock(bright).png');"></div></th></tr>
+			    					<tr><th><div class="modal-button-custom-text">40%</div></th></tr>
+			    				</table>
+			    			</th>
+			    		</tr>
+			    	</table>
+
+			    	<div class="modal-button-custom-descriptionarea" id="id-modal-mines-description-20">
+			    		NORMAL - 20 percent of the board is covered in mines. Most of the time solvable. Great for casual players.
+			    	</div>
+
+			    	<div class="modal-button-custom-descriptionarea" id="id-modal-mines-description-30">
+			    		MODERATE - 30 percent of the board is covered in mines. Luck is involved. Great for competitive players.
+			    	</div>
+
+			    	<div class="modal-button-custom-descriptionarea" id="id-modal-mines-description-40">
+			    		HARD - 40 percent of the board is covered in mines! Come at me! Try your luck if you dare!
+			    	</div>
+
+					<button class="button-red" onclick="closeModals()">CLOSE</button>
+
+			    </div>
+			</div>
+		</div>
+
+			<!-- Board Modal -->
+		<div id="id-modal-board" class="modal">
+			<div class="modal-content">
+
+			    <div class="modal-header">BOARD SIZE</div>
+
+			    <div class="modal-body">
+
+			    	<div class="modal-text noselect">Choose your board:</div>
+			    	
+			    	<table class="modal-marginarea noselect">
+			    		<tr>
+			    			<th>
+			    				<table class="modal-button-custom noselect" onclick="setBoardFieldValue('6')" id="id-modal-board-button-6">
+			    					<tr><th><div class="modal-button-custom-text-small">SMALL</div></th></tr>
+			    					<tr><th><div class="modal-button-custom-image" style="background-image: url('res/img/board3(bright).png');"></div></th></tr>
+			    					<tr><th><div class="modal-button-custom-text">6x6</div></th></tr>
+			    				</table>
+			    			</th>
+
+			    			<th>
+			    				<table class="modal-button-custom noselect" onclick="setBoardFieldValue('9')" id="id-modal-board-button-9">
+			    					<tr><th><div class="modal-button-custom-text-small">MEDIUM</div></th></tr>
+			    					<tr><th><div class="modal-button-custom-image" style="background-image: url('res/img/board3(bright).png');"></div></th></tr>
+			    					<tr><th><div class="modal-button-custom-text">9x9</div></th></tr>
+			    				</table>
+			    			</th>
+
+			    			<th>
+			    				<table class="modal-button-custom noselect" onclick="setBoardFieldValue('12')" id="id-modal-board-button-12">
+			    					<tr><th><div class="modal-button-custom-text-small">HUGE</div></th></tr>
+			    					<tr><th><div class="modal-button-custom-image" style="background-image: url('res/img/board3(bright).png');"></div></th></tr>
+			    					<tr><th><div class="modal-button-custom-text">x12</div></th></tr>
+			    				</table>
+			    			</th>
+			    		</tr>
+			    	</table>
+
+			    	<div class="modal-button-custom-descriptionarea" id="id-modal-board-description-6">
+			    		SMALL - Quick about 30 seconds game. Perfect to do many in a row. 
+			    	</div>
+
+			    	<div class="modal-button-custom-descriptionarea" id="id-modal-board-description-9">
+			    		MEDIUM - About 2 minutes game. Perfect for casual relaxing play.
+			    	</div>
+
+			    	<div class="modal-button-custom-descriptionarea" id="id-modal-board-description-12">
+			    		HUGE - Long lasting game. Perfect to do if you feel like doing so.
+			    	</div>
+
+					<button class="button-red" onclick="closeModals()">CLOSE</button>
+
+			    </div>
+			</div>
+		</div>
+
+
+
+		<!-- Scripts to run -->
+		<script>
+			setEnterKeyFunctionality();
+			preparePopUpBoxes();
+			loadValuesFromCache();
+			loadHighScores();
+		</script>
+	</body>
+</html>

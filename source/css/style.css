@@ -1,0 +1,850 @@
+@charset "UTF-8";
+
+
+
+/*General Setup*/
+
+footer, header, main, nav {
+	display: block;
+}
+
+html {
+    overflow-y:scroll;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: #2E3032;
+	color: #999;
+	font-family: Silkscreen, Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+	font-family: "Silkscreen";
+	src: url("../res/font/Silkscreen2.ttf") format("truetype");
+}
+
+table {
+	border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+
+td, th {
+    height: 100%;
+    padding: 0;
+	margin: 0;
+    border: 0;
+}
+	/*No anti-aliasing, all images/backgrounds should be pixelated*/
+.modal-button-custom-image, .nav-button-custom-image, .gametable tr td{
+	/*TODO Remove experimental prefix in 2020*/
+	image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+	image-rendering: optimizeSpeed;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+::selection {
+	background: #555; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+	background: #555; /* Gecko Browsers */
+}
+
+button:active, button:focus, input:focus {
+	outline: 0;
+    -moz-outline-style: none;
+}
+
+
+
+/*Header*/
+
+header {
+	padding: 20px 0px;
+	border-width: 0px 0px 2px 0px;
+	border-style: solid;
+	border-color: #1a1a1a;
+
+	background-color: #242628;
+	text-align: center;
+}
+
+.header-title {
+	font-size: 70px;
+	font-weight: normal;
+}
+
+.header-subtitle {
+	font-size: 18px;
+}
+
+.header-subtitle-isauthorized-false {
+	display: inline;
+	cursor: pointer;
+	text-decoration: underline;
+	color: #f55;"
+}
+
+.header-subtitle-isauthorized-true {
+	display: inline;
+	cursor: pointer;
+	text-decoration: underline;
+	color: #4CAF50;"
+}
+
+
+
+/*Option and Information Bar*/
+
+nav { 
+	position: relative;
+	width: 90%;
+	margin: 20px auto;
+	padding: 1px;
+	border: 2px solid #1a1a1a;
+
+	background-color: #242628;
+
+	/*TODO Remove experimental prefix in 2020*/
+	-webkit-animation-name: animateleft;
+    -webkit-animation-duration: 0.3s;
+    animation-name: animateleft;
+    animation-duration: 0.3s;
+}
+
+.nav-button-custom, .nav-button-custom-dummy {
+	width: calc(100% - 2px);
+	margin: 0px 1px;
+}
+
+.nav-button-custom {
+	background-color: #1a1a1a;
+	cursor: pointer;
+
+	transition: background-color 0.1s;
+}
+
+.nav-button-custom-dummy {
+	background-color: #1c1e20;
+}
+
+.nav-button-custom:active {
+	background-color: #1e2022;
+}
+	/*Image should be background to avoid select/drag issues*/
+.nav-button-custom-image {
+	height: 100%;
+	min-width: 70px;
+
+    background-repeat: no-repeat;
+    background-size: auto 70%;
+    background-position: center;
+}
+
+.nav-button-custom-wrapperarea {
+    display: inline-table;
+	height: calc(100% - 10px);
+	width: calc(100% - 10px);
+	margin: 5px;
+	min-width: 80px;
+
+	background-color: #242628;
+
+	transition: background-color 0.1s;
+}
+
+.nav-button-custom-text {
+	display: table-cell;
+    vertical-align: middle;
+    font-size: 46px;
+}
+
+
+
+/*Game Board*/
+
+main {
+	width: 90%;
+	margin: 20px auto;
+	border: 2px solid #1a1a1a;
+}
+
+.gametable {
+	text-align: center;
+	vertical-align: middle;
+	border-collapse: separate;
+}
+
+.gametable tr{
+	text-align: center;
+	vertical-align:bottom;
+	background-color: #999;
+}
+
+.gametable tr td{
+	text-align: center;
+	border: 2px solid #1a1a1a;
+	vertical-align:middle;
+	background-repeat: no-repeat;
+	background-position:5% 5%;
+	table-layout:fixed;
+}
+
+.gametable tr td:after {
+	vertical-align:middle;
+  	content: '';
+  	display: block;
+  	margin-top: 100%;
+  	margin-left: 100%;
+}
+
+.gametable-lockscreen {
+	background-color: #242628;
+}
+
+.gametable-text-red {
+	padding: 40px 0;
+	font-size: 36px;
+	color: #f55;
+}
+
+.gametable-text-green {
+	padding: 40px 0;
+	font-size: 36px;
+	color: #4CAF50;
+}
+
+
+
+/*Recent Games / Footer*/
+
+footer {
+	width: 90%;
+	margin: 0 auto 5% auto;
+	border: 2px solid #1a1a1a;
+	background-color: #242628;
+	text-align: center;
+	position: relative;
+
+	-webkit-animation-name: animateright;
+    -webkit-animation-duration: 0.3s;
+    animation-name: animateright;
+    animation-duration: 0.3s;
+}
+
+.footer-title {
+	font-size: 36px;
+	background-color: #1a1a1a;
+}
+
+.footer-scoreboard-titles th{
+	font-size: 34px;
+	padding: 5px 0;
+}
+
+footer td {
+	font-size: 30px;
+	border: 2px solid #1a1a1a;
+	padding: 4px;
+}
+
+.footer-search {
+	width: calc(100% - 20px);
+	margin: 10px 10px;
+	font-size: 30px;
+}
+
+
+
+/*Universal Elements*/
+
+input {
+    width: 100%;
+    padding: 6px 20px;
+    border: 2px solid #1a1a1a;
+    background-color: #999;
+
+	font-family: inherit;
+	border-radius: 5px;
+	font-size: 36px;
+	color: #1a1a1a;
+    box-sizing: border-box;
+    text-align: center;
+
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+input:focus {
+	box-shadow: 0 0 0px 5px #999;
+	background-color: #ddd;
+}
+
+.button-green, .button-red {
+	width: calc(100% - 2px);
+	margin: 1px 1px;
+    padding: 12px;
+
+	background-color: #283;
+    border: none;
+    cursor: pointer;
+
+	font-family: inherit;
+    font-size: 40px;
+    color: #1a1a1a;
+
+    transition: background-color 0.1s;
+}
+
+.button-red {
+	background-color: #C11;
+}
+
+.button-green:active {
+	background-color: #273;
+
+}
+
+.button-red:active {
+	background-color: #A11;
+}
+
+
+
+/*Universal Tools*/
+
+.align-text-center{
+	text-align: center;
+}
+
+.noselect {
+	/*TODO Remove experimental prefix in 2020*/
+ 	webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+
+
+/* Modal and Modal Elements*/
+
+.modal {
+	display: none;
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 2; /* On top of tooltip */
+
+    background-color: #2E3032;
+    background-color: rgba(46,48,50,0.5); 
+    overflow: auto; /* Enable scroll if needed */
+}
+
+.modal-content {
+    position: relative;
+    width: 70%;
+    margin: auto;
+    border: 2px solid #1a1a1a;
+
+    background-color: #242628;
+
+    /*TODO Remove experimental prefix in 2020*/
+    -webkit-animation-name: animateopacity;
+    -webkit-animation-duration: 0.2s;
+    animation-name: animateopacity;
+    animation-duration: 0.2s
+}
+
+.modal-header {
+    padding: 2px 16px;
+
+    background-color: #1a1a1a;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.modal-body {
+	padding: 10px 16px;
+}
+
+.modal-text {
+	font-size: 36px;
+	text-align: center;
+}
+
+.modal-marginarea {
+	margin: 20px 0;
+}
+
+.modal-button-custom, .modal-button-custom-selected {
+	width: 80%;
+	height: auto;
+	max-width: 500px;
+	margin: auto;
+
+	border-radius: 5px;
+
+	transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.modal-button-custom {
+	background-color: #1a1a1a;
+	cursor: pointer;
+}
+
+.modal-button-custom-selected {
+	background-color: #1c1e20;
+	cursor: auto;
+	box-shadow: 0 0 0 10px #1a1a1a;
+}
+
+.modal-button-custom:hover {
+	background-color: #1c1e20;
+}
+
+.modal-button-custom-image {
+	height: auto;
+	min-width: 140px;
+    padding-bottom: 40%;
+
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
+}
+
+.modal-button-custom-text {
+	margin: 5% 10%;
+
+	background-color: #242628;
+	font-size: 46px;
+}
+
+.modal-button-custom-text-small {
+	margin: 5% 10%;
+
+	background-color: #242628;
+	font-size: 20px;
+}
+
+.modal-button-custom-descriptionarea {
+	background-color: #1a1a1a;
+	font-size: 20px;
+	padding: 5px;
+	margin: 10px 0;
+	display: none;
+}
+
+
+
+/*Tooltip (popup description text on hover)*/
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    width: 100%;
+    padding: 5px 0;
+    bottom: 125%;
+    left: 0;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+    opacity: 0;
+    
+    background-color: #1a1a1a;
+    text-align: center;
+    font-size: 24px;
+    
+    transition: opacity 0.2s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #1a1a1a transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext, .tooltip:active .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+/* Animations */
+
+@-webkit-keyframes animateopacity {
+    from {opacity:0} 
+    to {opacity:1}
+}
+
+@keyframes animateopacity {
+    from {opacity:0}
+    to {opacity:1}
+}
+
+@-webkit-keyframes animateleft {
+    from {left:-100%; } 
+    to {left:0;}
+}
+
+@keyframes animateleft {
+    from {left:-100%;}
+    to {left:0;}
+}
+
+@-webkit-keyframes animateright {
+    from {right:-100%; } 
+    to {right:0;}
+}
+
+@keyframes animateright{
+    from {right:-100%;}
+    to {right:0;}
+}
+
+
+
+/*Screen width bigger then hight*/
+@media screen and (min-aspect-ratio: 11/10)  and (min-width: 700px){
+
+  main {
+  	width: 45%;
+  }
+
+}
+
+
+
+/* For Phones horizontal position */
+@media screen and (min-width: 0px) and (max-width: 700px) and (min-aspect-ratio: 13/9) {
+
+	/*Option and Information Bar*/
+
+	nav { 
+		width: calc(40% - 4px);
+		margin-left: calc(2.5% - 2px);
+		float: left;
+	}
+
+	nav th {
+		display: block;
+	}
+
+	.nav-button-custom, .nav-button-custom-dummy {
+		margin-bottom: 2px;
+		margin-top: 1px;
+	}
+
+
+	.nav-button-custom th {
+		display: table-cell;
+	}
+
+	.nav-button-custom-image {
+		height: 70px;
+	}
+
+
+
+	/*Game Board*/
+
+	main {
+		width: calc(52.5% - 4px);
+		margin-right: calc(2.5% - 2px);
+		float: right;
+	}
+
+
+
+	/*Recent Games / Footer*/
+
+	footer {
+		width: 95%;
+		clear: both;
+		-webkit-animation-name: none;
+	    animation-name: none;
+	}
+
+	.footer-scoreboard-titles th{
+		font-size: 25px;
+	}
+
+	footer td {
+		font-size: 20px;
+	}
+
+	.footer-search {
+		font-size: 25px;
+	}
+
+
+
+	/*Universal Elements*/
+
+	input {
+		font-size: 25px;
+	}
+
+	.button-green, .button-red {
+	    font-size: 30px;
+	}
+
+
+
+	/* Modal and Modal Elements*/
+
+	.modal {
+	    padding-top: 10px;
+	}
+
+	.modal-content {
+	    width: 80%;
+	}
+
+	.modal-header {
+	    padding: 0px 10px;
+	    font-size: 30px;
+	}
+
+	.modal-body {
+		padding: 5px 5px;
+	}
+
+	.modal-text {
+		font-size: 20px;
+	}
+
+	.modal-marginarea {
+		margin: 10px 0;
+	}
+
+	.modal-button-custom-selected {
+		box-shadow: 0 0 0 5px #1a1a1a;
+	}
+
+	.modal-button-custom-image {
+		min-width: 100px;
+	    padding-bottom: 30%;
+	}
+
+	.modal-button-custom-text {
+		margin: 3% 5%;
+		font-size: 30px;
+	}
+
+	.modal-button-custom-text-small {
+		margin: 3% 5%;
+		font-size: 15px;
+	}
+
+	.modal-button-custom-descriptionarea {
+		visibility: hidden;
+		height: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+
+
+	/*Tooltip (popup description text on hover)*/
+
+	.tooltip:hover .tooltiptext, .tooltip:active .tooltiptext {
+	    visibility: hidden;
+	    opacity: 0;
+	}
+
+}
+
+
+
+/* For Phones vertical position */
+@media screen and (min-width: 0px) and (max-width: 700px) and (max-aspect-ratio: 13/9) {
+
+	/*General Setup*/
+
+	html {
+	    overflow-y:auto;
+	}
+
+
+
+	/*Header*/
+
+    header {
+		padding: 10px 0px;
+	}
+
+	.header-title {
+		font-size: 46px;
+	}
+
+	.header-subtitle {
+		font-size: 12px;
+	}
+
+
+
+	/*Option and Information Bar*/
+
+	nav {
+		width: 95%;
+		margin: 10px auto;
+	}
+
+	.nav-button-custom-image {
+		height: 100%;
+		min-width: 40px;
+	}
+
+	.nav-button-custom-wrapperarea {
+		height: calc(100% - 6px);
+		width: calc(100% - 6px);
+		margin: 3px;
+		min-width: 60px;
+	}
+
+	.nav-button-custom-text {
+		display: table-cell;
+	    vertical-align: middle;
+		font-size: 25px;
+	}
+
+
+
+	/*Game Board*/
+
+	main {
+		width: 95%;
+		margin: 10px auto;
+	}
+
+
+
+	/*Recent Games / Footer*/
+
+	footer {
+		width: 95%;
+		margin-bottom: 2.5%;
+		-webkit-animation-name: none;
+	    animation-name: none;
+	}
+
+	.footer-title {
+		font-size: 30px;
+	}
+
+	.footer-scoreboard-titles th{
+		font-size: 16px;
+	}
+
+	footer td {
+		font-size: 12px;
+	}
+
+	.footer-search {
+		width: calc(100% - 10px);
+		margin: 5px 5px;
+		font-size: 20px;
+	}
+
+
+
+	/*Universal Elements*/
+
+	input {
+	    padding: 6px 10px;
+
+		font-size: 20px;
+	}
+
+	.button-green, .button-red {
+	    padding: 10px 0;
+	    font-size: 20px;
+	}
+
+
+
+	/* Modal and Modal Elements*/
+
+	.modal {
+	    padding-top: 30px;
+	}
+
+	.modal-content {
+	    width: 90%;
+	}
+
+	.modal-header {
+	    padding: 2px 5px;
+	    font-size: 25px;
+	}
+
+	.modal-body {
+		padding: 5px;
+	}
+
+	.modal-text {
+		font-size: 20px;
+	}
+
+	.modal-marginarea {
+		margin: 15px 0;
+	}
+
+	.modal-button-custom, .modal-button-custom-selected {
+		width: 90%;
+	}
+
+	.modal-button-custom-selected {
+		box-shadow: 0 0 0 5px #1a1a1a;
+	}
+
+	.modal-button-custom-image {
+		min-width: 70px;
+	    padding-bottom: 60%;
+	}
+
+	.modal-button-custom-text {
+		font-size: 30px;
+	}
+
+	.modal-button-custom-text-small {
+		font-size: 12px;
+	}
+
+	.modal-button-custom-descriptionarea {
+		font-size: 15px;
+		margin: 5px 0;
+	}
+
+
+
+	/*Tooltip (popup description text on hover)*/
+
+	.tooltip .tooltiptext {
+	    bottom: 130%;
+	    font-size: 12px;
+	}
+
+}
